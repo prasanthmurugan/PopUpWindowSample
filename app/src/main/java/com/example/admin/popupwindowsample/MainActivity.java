@@ -16,11 +16,11 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class MainActivity extends YouTubeBaseActivity {
+public class MainActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     TextView mTxtHelloWorld;
     YouTubePlayerView mYoutubePlayerView;
     public static final String API = "AIzaSyDkbWa_9FM3-scsgBCfrUxbCYD7NNwi7E0";
-    public static final String YOU_TUBE_ID = "kF4H11JlAtk";
+    public static final String YOU_TUBE_ID = "TRmgMe2STL0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,82 +37,86 @@ public class MainActivity extends YouTubeBaseActivity {
 
     private void setUpDefaults() {
         mYoutubePlayerView =(YouTubePlayerView)findViewById(R.id.you_tube);
-        mYoutubePlayerView.initialize(API, new YouTubePlayer.OnInitializedListener() {
-            @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, boolean b) {
-                Log.e("loading: ", "" + b);
-                if (!b) {
-                    Log.e("loading: ",""+b);
+        mYoutubePlayerView.initialize(API,this);
+//                new YouTubePlayer.OnInitializedListener() {
+//            @Override
+//            public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, boolean b) {
+//
+//                Log.e("loading: ", "" + b);
+//                if (!b) {
+//                    Log.e("loading: ",""+b);
 //                    youTubePlayer.cueVideo(YOU_TUBE_ID);
-                      youTubePlayer.loadVideo(YOU_TUBE_ID);
-                }
-                youTubePlayer.setPlayerStateChangeListener(new YouTubePlayer.PlayerStateChangeListener() {
-                    @Override
-                    public void onLoading() {
-                        Log.e("came:","loading");
-                        youTubePlayer.pause();
-                    }
-
-                    @Override
-                    public void onLoaded(String s) {
-                        Log.e("came:","onLoaded");
-                        youTubePlayer.play();
-                    }
-
-                    @Override
-                    public void onAdStarted() {
-                        Log.e("came:","onAdStarted");
-                    }
-
-                    @Override
-                    public void onVideoStarted() {
-                        Log.e("came:","onVideoStarted");
-                    }
-
-                    @Override
-                    public void onVideoEnded() {
-                        Log.e("came:","onVideoEnded");
-                    }
-
-                    @Override
-                    public void onError(YouTubePlayer.ErrorReason errorReason) {
-                        Log.e("came:","onError");
-                    }
-                });
-                youTubePlayer.setPlaybackEventListener(new YouTubePlayer.PlaybackEventListener() {
-                    @Override
-                    public void onPlaying() {
-                        Log.e("came:","onPlaying");
-                    }
-
-                    @Override
-                    public void onPaused() {
-                        Log.e("came:","onPaused");
-                    }
-
-                    @Override
-                    public void onStopped() {
-                        Log.e("came:","onStopped");
-                    }
-
-                    @Override
-                    public void onBuffering(boolean b) {
-                        Log.e("came:","onBuffering");
-                    }
-
-                    @Override
-                    public void onSeekTo(int i) {
-                        Log.e("came:","onSeekTo");
-                    }
-                });
-            }
-
-
-            @Override
-            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-
-            }
-        });
+////                      youTubePlayer.loadVideo(YOU_TUBE_ID);
+//                }
+//
+//                youTubePlayer.setPlayerStateChangeListener(new YouTubePlayer.PlayerStateChangeListener() {
+//                    @Override
+//                    public void onLoading() {
+//                        Log.e("came:", "loading");
+////                        youTubePlayer.play();
+////                        youTubePlayer.pause();
+//                    }
+//
+//                    @Override
+//                    public void onLoaded(String s) {
+//                        Log.e("came:","onLoaded");
+//                        youTubePlayer.play();
+//                    }
+//
+//                    @Override
+//                    public void onAdStarted() {
+//                        Log.e("came:","onAdStarted");
+//                    }
+//
+//                    @Override
+//                    public void onVideoStarted() {
+//                        Log.e("came:","onVideoStarted");
+//                    }
+//
+//                    @Override
+//                    public void onVideoEnded() {
+//                        Log.e("came:","onVideoEnded");
+//                    }
+//
+//                    @Override
+//                    public void onError(YouTubePlayer.ErrorReason errorReason) {
+//                        Log.e("came:","onError");
+//                    }
+//                });
+//
+//                youTubePlayer.setPlaybackEventListener(new YouTubePlayer.PlaybackEventListener() {
+//                    @Override
+//                    public void onPlaying() {
+//                        Log.e("came:","onPlaying");
+//                    }
+//
+//                    @Override
+//                    public void onPaused() {
+//                        Log.e("came:","onPaused");
+//                    }
+//
+//                    @Override
+//                    public void onStopped() {
+//                        Log.e("came:","onStopped");
+//                    }
+//
+//                    @Override
+//                    public void onBuffering(boolean b) {
+//                        Log.e("came:","onBuffering");
+//                    }
+//
+//                    @Override
+//                    public void onSeekTo(int i) {
+//                        Log.e("came:","onSeekTo");
+//                    }
+//                });
+//
+//            }
+//
+//            @Override
+//            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+//            }
+//        });
 
     }
 
@@ -146,4 +150,51 @@ public class MainActivity extends YouTubeBaseActivity {
     }
 
 
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, boolean isScreenRotated) {
+        Log.e("Rotated: ", "" + isScreenRotated);
+        if (!isScreenRotated) {
+            youTubePlayer.cueVideo(YOU_TUBE_ID);
+//                      youTubePlayer.loadVideo(YOU_TUBE_ID);
+        }
+        youTubePlayer.setPlayerStateChangeListener(new YouTubePlayer.PlayerStateChangeListener() {
+                    @Override
+                    public void onLoading() {
+                        Log.e("came:", "loading");
+//                        youTubePlayer.play();
+//                        youTubePlayer.pause();
+                    }
+
+                    @Override
+                    public void onLoaded(String s) {
+                        Log.e("came:","onLoaded");
+//                        youTubePlayer.play();
+                    }
+
+                    @Override
+                    public void onAdStarted() {
+                        Log.e("came:","onAdStarted");
+                    }
+
+                    @Override
+                    public void onVideoStarted() {
+                        Log.e("came:","onVideoStarted");
+                    }
+
+                    @Override
+                    public void onVideoEnded() {
+                        Log.e("came:","onVideoEnded");
+                    }
+
+                    @Override
+                    public void onError(YouTubePlayer.ErrorReason errorReason) {
+                        Log.e("came:","onError: "+errorReason);
+                    }
+                });
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+    }
 }
