@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">PopUpWindowSample</string>
     <string name="pop_up">My PopUp Window</string>
+    <string name="main_photo">MAIN PHOTO</string>
+    <string name="photo_one">Photo 1</string>
+    <string name="choose_a_photo">Choose a photo</string>
 </resources>
