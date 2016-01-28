@@ -24,6 +24,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Arrays;
+import java.util.Locale;
 
 public class MainActivity extends YouTubeBaseActivity{
     TextView mTxtHelloWorld;
@@ -37,12 +39,13 @@ public class MainActivity extends YouTubeBaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        setUpDefaults();
-        setUpEvents();
+//        setUpDefaults();
+//        setUpEvents();
     }
 
     private void init() {
         mTxtHelloWorld = (TextView)findViewById(R.id.hello_world);
+        mTxtHelloWorld.setText(Locale.getDefault().getDisplayLanguage());
     }
 
     private void setUpDefaults() {

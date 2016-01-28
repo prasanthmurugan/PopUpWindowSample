@@ -4,4 +4,11 @@
     <string name="main_photo">MAIN PHOTO</string>
     <string name="photo_one">Photo 1</string>
     <string name="choose_a_photo">Choose a photo</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="welcome">welcome</string>
+    <string name="have_a_seat">Have a Seat</string>
+    <string name="come_again">Come again</string>
+    <string name="good_bye">Good bye</string>
+    <string name="see_you_soon">See you soon</string>
+    <string name="good_night">Good night</string>
 </resources>

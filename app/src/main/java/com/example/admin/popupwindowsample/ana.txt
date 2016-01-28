@@ -1,0 +1,98 @@
+welcome
+Have a Seat
+Come again
+Good bye
+See you soon
+Good night
+Good Morning
+
+//permutation
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		String str = "one";
+		 permutation("", str); 
+	}
+	public static void permutation(String str) { 
+    permutation("", str); 
+}
+
+private static void permutation(String prefix, String str) {
+    int n = str.length();
+    if (n == 0) System.out.println(prefix);
+    else {
+        for (int i = 0; i < n; i++)
+            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+    }
+}
+}
+
+
+//Anagrams
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		 isAnagram("one", "oan");
+	}
+   static void isAnagram(String s1, String s2)
+    {
+        //Removing all white spaces from s1 and s2
+ 
+        String copyOfs1 = s1.replaceAll("\\s", "");
+ 
+        String copyOfs2 = s2.replaceAll("\\s", "");
+ 
+        //Initially setting status as true
+ 
+        boolean status = true;
+ 
+        if(copyOfs1.length() != copyOfs2.length())
+        {
+            //Setting status as false if copyOfs1 and copyOfs2 doesn't have same length
+ 
+            status = false;
+        }
+        else
+        {
+            //Changing the case of characters of both copyOfs1 and copyOfs2 and converting them to char array
+ 
+            char[] s1Array = copyOfs1.toLowerCase().toCharArray();
+ 
+            char[] s2Array = copyOfs2.toLowerCase().toCharArray();
+ 
+            //Sorting both s1Array and s2Array
+ 
+            Arrays.sort(s1Array);
+ 
+            Arrays.sort(s2Array);
+ 
+            //Checking whether s1Array and s2Array are equal
+ 
+            status = Arrays.equals(s1Array, s2Array);
+        }
+ 
+        //Output
+ 
+        if(status)
+        {
+            System.out.println(s1+" and "+s2+" are anagrams");
+        }
+        else
+        {
+            System.out.println(s1+" and "+s2+" are not anagrams");
+        }
+    }
+ 
+}
+
